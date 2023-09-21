@@ -14,10 +14,7 @@ const Login = () => {
   return (
     <div>
       <body className="Auth-Login-Container flex flex-col justify-center items-center h-screen">
-        <div
-          className="Auth-Loing-Box-Border border p-1 rounded-md border-black"
-          style={{ backgroundColor: "#2f3c7e" }}
-        >
+        <div className="Auth-Login-Box-Border p-1 rounded-md ">
           <div
             className="Auth-Login-Box flex flex-col items-center border p-10 border-black rounded h-full gap-5"
             style={{ backgroundColor: "#fbeaeb" }}
@@ -34,7 +31,7 @@ const Login = () => {
                 ></input>
               </div>
 
-              <div className="flex items-center justify-center border-b  border-slate-400 px-5 py-2 gap-2">
+              <div className="flex items-center justify-center border-b border-slate-400 px-5 py-2 gap-2">
                 <RiLockPasswordLine />
                 <input
                   className="Auth-Login-Input-Pwrd focus:outline-none bg-[#fbeaeb]  "
@@ -51,7 +48,12 @@ const Login = () => {
             </form>
             <span>
               Dont Have An Account?{" "}
-              <Link className="text-slate-400 hover:underline ">Register</Link>
+              <Link
+                to="/auth/register"
+                className="text-slate-400 hover:underline "
+              >
+                Register
+              </Link>
             </span>
             <div className="flex justify-center items-center gap-2 w-full">
               <div className="h-[1px] border w-1/3 border-black"></div>

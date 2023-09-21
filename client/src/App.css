@@ -52,3 +52,15 @@ body {
 .Auth-Login-Container {
   background-image: linear-gradient(#fbeaeb, #2f3c7e);
 }
+
+.Auth-Register-Container {
+  background-image: linear-gradient(#fbeaeb, #2f3c7e);
+}
+
+.Auth-Login-Box-Border {
+  background-image: linear-gradient(#2f3c7e, #fbeaeb);
+}
+
+.Auth-Register-Box-Border {
+  background-image: linear-gradient(#2f3c7e, #fbeaeb);
+}
