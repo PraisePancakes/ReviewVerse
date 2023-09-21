@@ -48,3 +48,7 @@ h2 {
 body {
   background-color: #fbeaeb;
 }
+
+.Auth-Login-Container {
+  background-image: linear-gradient(#fbeaeb, #2f3c7e);
+}
