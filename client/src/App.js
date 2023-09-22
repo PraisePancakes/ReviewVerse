@@ -4,11 +4,13 @@ import AuthHome from "./Auth/AuthHome";
 import Login from "./Auth/Login";
 import Register from "./Auth/Register";
 import { Route, Routes, Navigate } from "react-router-dom";
+import { useAuth } from "./Context/AuthContext";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
+  const { isAuth } = useAuth();
   return (
     <div className="App">
+      {" "}
       <Routes>
         <Route
           path="/auth"

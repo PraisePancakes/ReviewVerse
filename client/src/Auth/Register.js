@@ -11,10 +11,15 @@ import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   const [pwVis, setPwVis] = useState(false);
+
+  const handleChange = () => {};
+
+  const handleSubmit = async () => {};
+
   return (
     <div>
       <body className="Auth-Register-Container flex flex-col justify-center items-center h-screen">
-        <div className="Auth-Register-Box-Border  p-1 rounded-md ">
+        <div className="Auth-Register-Box-Border p-1 rounded-md ">
           <div
             className="Auth-Register-Box flex flex-col items-center border p-10 border-black rounded h-full gap-5"
             style={{ backgroundColor: "#fbeaeb" }}
