@@ -10,11 +10,29 @@ import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
+  const DEFAULT_FORM = {
+    username: "",
+    password: "",
+  };
+  const [form, setForm] = useState(DEFAULT_FORM);
+
   const [pwVis, setPwVis] = useState(false);
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-  const handleSubmit = async () => {};
+    setForm((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    console.log("submitted");
+    console.log(form);
+  };
 
   return (
     <div>
@@ -27,12 +45,17 @@ const Login = () => {
             <h1 className="Auth-Register-Header" style={{ color: "#2f3c7e" }}>
               REGISTER
             </h1>
-            <form className="Auth-Register-Form flex flex-col gap-5">
+            <form
+              onSubmit={handleSubmit}
+              className="Auth-Register-Form flex flex-col gap-5"
+            >
               <div className="flex items-center justify-center px-5 py-2 gap-2 border-b border-slate-400">
                 <BsPerson />
                 <input
                   className="Auth-Register-Input-Uname focus:outline-none bg-[#fbeaeb] "
+                  name="username"
                   placeholder="Username"
+                  onChange={handleChange}
                 ></input>
               </div>
 
@@ -40,7 +63,9 @@ const Login = () => {
                 <RiLockPasswordLine />
                 <input
                   className="Auth-Register-Input-Pwrd focus:outline-none bg-[#fbeaeb]  "
+                  name="password"
                   placeholder="Password"
+                  onChange={handleChange}
                   type={`${pwVis ? "text" : "password"}`}
                 ></input>
               </div>

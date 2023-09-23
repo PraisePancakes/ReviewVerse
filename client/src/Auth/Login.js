@@ -10,6 +10,28 @@ import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
+  const DEFAULT_FORM = {
+    username: "",
+    password: "",
+  };
+  const [form, setForm] = useState(DEFAULT_FORM);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setForm((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    console.log("submitted");
+    console.log(form);
+  };
+
   const [pwVis, setPwVis] = useState(false);
   return (
     <div>
@@ -22,12 +44,17 @@ const Login = () => {
             <h1 className="Auth-Login-Header" style={{ color: "#2f3c7e" }}>
               LOGIN
             </h1>
-            <form className="Auth-Login-Form flex flex-col gap-5">
+            <form
+              onSubmit={handleSubmit}
+              className="Auth-Login-Form flex flex-col gap-5"
+            >
               <div className="flex items-center justify-center px-5 py-2 gap-2 border-b border-slate-400">
                 <BsPerson />
                 <input
                   className="Auth-Login-Input-Uname focus:outline-none bg-[#fbeaeb] "
+                  name="username"
                   placeholder="Username"
+                  onChange={handleChange}
                 ></input>
               </div>
 
@@ -36,6 +63,8 @@ const Login = () => {
                 <input
                   className="Auth-Login-Input-Pwrd focus:outline-none bg-[#fbeaeb]  "
                   placeholder="Password"
+                  name="password"
+                  onChange={handleChange}
                   type={`${pwVis ? "text" : "password"}`}
                 ></input>
               </div>

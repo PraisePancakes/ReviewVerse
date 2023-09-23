@@ -7,6 +7,8 @@ require("dotenv").config();
 const path = require("path");
 const cors = require("cors");
 
+const authRoutes = require("./Routes/Auth/AuthRoutes");
+
 app.use(cors());
 app.use(cookieParser());
 
@@ -22,3 +24,5 @@ mongoose
       console.log("Server listening on Port", PORT);
     })
   );
+
+app.use("/auth", authRoutes);
