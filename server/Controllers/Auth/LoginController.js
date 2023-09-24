@@ -49,7 +49,6 @@ module.exports = async (req, res) => {
       httpOnly: true,
       expiresIn: new Date(Date.now() + 60000 * 60 * 24 * 24 * 6),
       sameSite: "lax",
-      secure: true,
     });
 
     res.cookie("_RT", REFRESH_TOKEN, {
@@ -57,7 +56,6 @@ module.exports = async (req, res) => {
       httpOnly: true,
       expiresIn: new Date(Date.now() + 60000 * 60 * 24 * 24 * 6),
       sameSite: "lax",
-      secure: true,
     });
 
     return res.status(200).send({ message: "Logged In!" });

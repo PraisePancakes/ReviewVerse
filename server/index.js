@@ -1,15 +1,22 @@
 const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
-app.use(express.json());
-const cookieParser = require("cookie-parser");
-require("dotenv").config();
-const path = require("path");
 const cors = require("cors");
+const mongoose = require("mongoose");
+const app = express();
+require("dotenv").config();
+
+const cookieParser = require("cookie-parser");
+app.use(express.json());
 
 const authRoutes = require("./Routes/Auth/AuthRoutes");
+const getUserRoute = require("./Routes/GetUserRoute");
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://localhost:3000",
+  credentials: true, // Allow credentials (e.g., cookies, authorization headers)
+  allowedHeaders: ["Content-Type", "Authorization"], // Specify the allowed headers
+};
+
+app.use(cors(corsOptions));
 app.use(cookieParser());
 
 const URI = process.env.URI_CONNECTION_STRING;
@@ -26,3 +33,4 @@ mongoose
   );
 
 app.use("/auth", authRoutes);
+app.use("/user", getUserRoute);
