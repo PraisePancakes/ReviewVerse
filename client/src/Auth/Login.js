@@ -8,14 +8,16 @@ import {
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { useAuth } from "../Context/AuthContext";
 
 const Login = () => {
+  const { login } = useAuth();
+
   const DEFAULT_FORM = {
     username: "",
     password: "",
   };
   const [form, setForm] = useState(DEFAULT_FORM);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -28,8 +30,9 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log("submitted");
-    console.log(form);
+    e.preventDefault();
+    login(form);
+    setForm(DEFAULT_FORM);
   };
 
   const [pwVis, setPwVis] = useState(false);

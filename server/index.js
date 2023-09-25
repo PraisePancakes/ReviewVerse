@@ -8,10 +8,9 @@ const cookieParser = require("cookie-parser");
 app.use(express.json());
 
 const authRoutes = require("./Routes/Auth/AuthRoutes");
-const getUserRoute = require("./Routes/GetUserRoute");
 
 const corsOptions = {
-  origin: "https://localhost:3000",
+  origin: "http://localhost:3000",
   credentials: true, // Allow credentials (e.g., cookies, authorization headers)
   allowedHeaders: ["Content-Type", "Authorization"], // Specify the allowed headers
 };
@@ -33,4 +32,3 @@ mongoose
   );
 
 app.use("/auth", authRoutes);
-app.use("/user", getUserRoute);
