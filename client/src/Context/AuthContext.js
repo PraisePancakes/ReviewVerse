@@ -1,19 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { getUser } from "../Services/Auth/AuthServices";
+
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const isAuth = localStorage.getItem("loggedIn");
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
-
-  const getUser = async () => {
-    const response = await axios.get("http://localhost:3001/auth/user");
-    console.log(response);
-    return response.data.user;
-  };
+  const [initalGlobalLoading, setInitialGlobalLoading] = useState(true);
 
   useEffect(() => {
     if (isAuth) {
@@ -23,24 +18,13 @@ export function AuthProvider({ children }) {
           localStorage.removeItem("loggedIn");
           navigate("/");
         })
-        .finally(() => setLoading(false));
+        .finally(() => setInitialGlobalLoading(false));
     }
-    setLoading(false);
-  }, [isAuth]);
-
-  const login = async (form) => {
-    try {
-      await axios.post("http://localhost:3001/auth/login", form);
-      localStorage.setItem("loggedIn", true);
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    setInitialGlobalLoading(false);
+  }, [isAuth, navigate]);
 
   const value = {
-    loading,
-    login,
+    initalGlobalLoading,
     user,
     setUser,
     isAuth,

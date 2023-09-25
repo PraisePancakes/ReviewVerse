@@ -6,21 +6,21 @@ import {
   AiFillEyeInvisible,
   AiFillTwitterCircle,
 } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { register } from "../Services/Auth/AuthServices";
 
-const Login = () => {
+const Register = () => {
   const DEFAULT_FORM = {
     username: "",
     password: "",
   };
   const [form, setForm] = useState(DEFAULT_FORM);
-
   const [pwVis, setPwVis] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setForm((prev) => {
       return {
         ...prev,
@@ -30,8 +30,13 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log("submitted");
-    console.log(form);
+    e.preventDefault();
+    register(form)
+      .then(() => {
+        navigate("/auth/login");
+      })
+      .catch((error) => console.log(error));
+    setForm(DEFAULT_FORM);
   };
 
   return (
@@ -103,4 +108,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
