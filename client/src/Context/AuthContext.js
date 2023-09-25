@@ -20,7 +20,7 @@ export function AuthProvider({ children }) {
       getUser()
         .then((user) => setUser(user))
         .catch(() => {
-          localStorage.clear();
+          localStorage.removeItem("loggedIn");
           navigate("/");
         })
         .finally(() => setLoading(false));
