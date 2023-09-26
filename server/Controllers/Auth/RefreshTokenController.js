@@ -6,15 +6,13 @@ const REFRESH_TOKEN_SECRET_KEY = process.env.REFRESH_TOKEN_SECRET_KEY;
 
 module.exports = async (req, res) => {
   const _RT = req.cookies._RT;
-  const userId = req.id;
   try {
-    jwt.verify(_RT, REFRESH_TOKEN_SECRET_KEY, (err) => {
+    jwt.verify(_RT, REFRESH_TOKEN_SECRET_KEY, (err, user) => {
       if (err) {
         return res
           .status(406)
           .send({ message: "_RT has an invalid signature or is expired" });
       }
-
       res.clearCookie("_AT", {
         expires: new Date(0),
         path: "/",
@@ -24,7 +22,7 @@ module.exports = async (req, res) => {
 
       const ACCESS_TOKEN = jwt.sign(
         {
-          id: userId,
+          id: user.id,
         },
         ACCESS_TOKEN_SECRET_KEY,
         {

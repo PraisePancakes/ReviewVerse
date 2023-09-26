@@ -12,3 +12,9 @@ export const getUser = async () => {
   const response = await axios.get("http://localhost:3001/auth/user");
   return response.data.user;
 };
+
+export const refreshToken = async () => {
+  await axios.post("http://localhost:3001/auth/refresh");
+  const user = await getUser();
+  return user;
+};

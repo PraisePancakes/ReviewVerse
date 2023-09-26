@@ -9,10 +9,10 @@ import Loading from "./Components/Loading";
 
 axios.defaults.withCredentials = true;
 function App() {
-  const { user, initialGlobalLoading, isAuth } = useAuth();
+  const { user, initialGlobalLoader, isAuth } = useAuth();
   return (
     <div className="App">
-      {initialGlobalLoading ? (
+      {initialGlobalLoader ? (
         <Loading />
       ) : (
         <Routes>
