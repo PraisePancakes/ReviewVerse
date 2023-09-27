@@ -2,12 +2,14 @@ h1 {
   font-size: 3rem;
   font-weight: 500;
   color: #fbeaeb;
+  font-family: "Montserrat", sans-serif;
 }
 
 h2 {
   font-size: 2rem;
   font-weight: 300;
   color: #fbeaeb;
+  font-family: "Oswald", sans-serif;
 }
 
 #auth-hero {
@@ -15,22 +17,18 @@ h2 {
 }
 
 #typing-animation {
-  font-size: 24px;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 4px solid #333;
-  width: 0;
-  animation: typing 5s steps(40, end) infinite,
-    blink-caret 0.75s step-end infinite;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
 @keyframes typing {
-  0% {
+  from {
     width: 0;
   }
-  40%,
-  50%,
-  100% {
+  to {
     width: 100%;
   }
 }
@@ -41,12 +39,35 @@ h2 {
     border-color: transparent;
   }
   50% {
-    border-color: #ffffff;
+    border-color: black;
   }
+}
+#jagged-bottom-border {
+  --mask: conic-gradient(
+      from -45deg at bottom,
+      #0000,
+      #000 1deg 89deg,
+      #0000 90deg
+    )
+    20%/50px 100%;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+}
+
+#jagged-top-border {
+  --mask: conic-gradient(
+      from 135deg at top,
+      #0000,
+      #000 1deg 89deg,
+      #0000 90deg
+    )
+    50%/50px 100%;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
 }
 
 body {
-  background-color: #fbeaeb;
+  background-color: #e6e5e5;
 }
 
 .Auth-Login-Container {

@@ -6,12 +6,14 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { useAuth } from "./Context/AuthContext";
 import axios from "axios";
 import Loading from "./Components/Loading";
+import Navbar from "./Components/Navbar";
 
 axios.defaults.withCredentials = true;
 function App() {
   const { user, initialGlobalLoader, isAuth } = useAuth();
   return (
     <div className="App">
+      {isAuth && <Navbar />}
       {initialGlobalLoader ? (
         <Loading />
       ) : (
