@@ -11,6 +11,7 @@ import Navbar from "./Components/Navbar";
 axios.defaults.withCredentials = true;
 function App() {
   const { user, initialGlobalLoader, isAuth } = useAuth();
+
   return (
     <div className="App">
       {isAuth && <Navbar />}
@@ -23,7 +24,7 @@ function App() {
             path="/"
             element={
               isAuth ? (
-                <div>Hello {user?.username}</div>
+                <div className="pt-20">Hello {user?.username}</div>
               ) : (
                 <Navigate to="/auth"></Navigate>
               )
