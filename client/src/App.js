@@ -7,10 +7,11 @@ import { useAuth } from "./Context/AuthContext";
 import axios from "axios";
 import Loading from "./Components/Loading";
 import Navbar from "./Components/Navbar";
+import Home from "./Pages/Home";
 
 axios.defaults.withCredentials = true;
 function App() {
-  const { user, initialGlobalLoader, isAuth } = useAuth();
+  const { initialGlobalLoader, isAuth } = useAuth();
 
   return (
     <div className="App">
@@ -24,7 +25,9 @@ function App() {
             path="/"
             element={
               isAuth ? (
-                <div className="pt-20">Hello {user?.username}</div>
+                <div className="mt-20">
+                  <Home />
+                </div>
               ) : (
                 <Navigate to="/auth"></Navigate>
               )

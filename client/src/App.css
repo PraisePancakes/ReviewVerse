@@ -12,6 +12,13 @@ h2 {
   font-family: "Oswald", sans-serif;
 }
 
+h3 {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #fbeaeb;
+  font-family: "Montserrat", sans-serif;
+}
+
 #auth-hero {
   background-color: #2f3c7e;
 }
