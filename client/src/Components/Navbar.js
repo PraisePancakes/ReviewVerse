@@ -11,11 +11,9 @@ import NavLogo from "./NavLogo";
 
 const Navbar = () => {
   const scrollPosition = useScroll();
-
-  const { user } = useAuth();
-
+  const { user, logout } = useAuth();
   const { ref, isComponentVisible, setIsComponentVisible } =
-    useComponentVisible(true);
+    useComponentVisible(false);
 
   const navLinks = [
     {
@@ -111,6 +109,7 @@ const Navbar = () => {
                     ? "hover:bg-slate-400 h-10  flex items-center justify-center gap-4 transition-colors duration-300"
                     : "opacity-0 text-transparent"
                 }`}
+                onClick={logout}
               >
                 <MdOutlineLogout />
                 Log Out

@@ -10,6 +10,10 @@ export function AuthProvider({ children }) {
   const navigate = useNavigate();
   const [initalGlobalLoader, setInitialGlobalLoader] = useState(true);
 
+  const logout = () => {
+    localStorage.removeItem("loggedIn");
+    setUser(null);
+  };
   useEffect(() => {
     if (isAuth) {
       getUser()
@@ -32,6 +36,7 @@ export function AuthProvider({ children }) {
     user,
     setUser,
     isAuth,
+    logout,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
