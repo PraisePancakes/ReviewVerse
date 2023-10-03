@@ -39,85 +39,96 @@ const Navbar = () => {
   ];
 
   return (
-    <div>
-      <div
-        className={`${
-          scrollPosition > 0
-            ? "h-[80px] w-full fixed"
-            : "h-[80px] border-b w-full bg-[#2f3c7e] fixed"
-        } top-0`}
-      >
-        {" "}
-        <nav className="text-white mx-5 flex gap-5 h-full items-center">
-          <Link
-            to="/"
-            className="cursor-pointer flex flex-col items-center justify-center"
+    <div
+      className={`${
+        scrollPosition > 0
+          ? " bg-[#242b49] "
+          : " text-black border-b border-b-slate-300"
+      } h-[80px] w-full fixed top-0`}
+    >
+      {" "}
+      <nav className="text-white mx-5 flex gap-5 h-full items-center ">
+        <Link
+          to="/"
+          className="cursor-pointer flex flex-col items-center justify-center"
+        >
+          <h3 className={`${scrollPosition > 0 ? "" : "text-black"}`}>
+            REVIEW VERSE
+          </h3>
+          <NavLogo />
+        </Link>
+        <ul className="lg:flex gap-5 hidden">
+          {navLinks.map((navItem) => {
+            return (
+              <Link key={navItem.id} path={`${navItem.path}`}>
+                <li
+                  className={`${
+                    scrollPosition > 0 ? "text-white" : "text-black"
+                  } font-bold text-lg `}
+                >
+                  {navItem.title}
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+        <div className="relative flex flex-1 font-bold text-lg justify-end ">
+          <button
+            ref={ref}
+            onClick={() => setIsComponentVisible(!isComponentVisible)}
+            className={`${
+              isComponentVisible
+                ? "bg-gray-800 text-white"
+                : "text-black hover:bg-gray-800 hover:text-white"
+            } flex w-[8rem] justify-start rounded border ${
+              scrollPosition > 0 ? "border-white text-white" : "border-black"
+            }  items-center gap-1 p-2 transition-colors duration-500`}
+            color="black"
           >
-            <h3 className={`${scrollPosition > 0 ? "text-black" : ""}`}>
-              REVIEW VERSE
-            </h3>
-            <NavLogo />
-          </Link>
-          <ul className="lg:flex gap-5 hidden">
-            {navLinks.map((navItem) => {
-              return (
-                <Link key={navItem.id} path={`${navItem.path}`}>
-                  <li className="font-bold text-lg">{navItem.title}</li>
-                </Link>
-              );
-            })}
-          </ul>
-          <div className="relative flex flex-1 font-bold text-lg justify-end ">
+            <FiUser size={30} className="border border-[#e6e5e5] rounded" />
+            <span className="">{user?.username}</span>
+            <CiMenuKebab className="flex flex-1" />
+          </button>
+          <div
+            className={`${
+              isComponentVisible
+                ? " opacity-100 top-[3rem] w-[10rem] bg-[#242b52] rounded py-3 flex gap-1 flex-col transition-opacity duration-500 border border-white"
+                : "w-[0] "
+            } absolute transition-opacity duration-500`}
+          >
             <button
-              ref={ref}
-              onClick={() => setIsComponentVisible(!isComponentVisible)}
-              className=" flex w-[8rem] justify-start rounded items-center gap-1 p-2 hover:bg-gray-800 transition-colors duration-500 "
-            >
-              <FiUser size={30} className="border rounded" />
-              <span>{user?.username}</span>
-              <CiMenuKebab className="flex flex-1" />
-            </button>
-            <div
               className={`${
                 isComponentVisible
-                  ? "absolute opacity-100 top-[3rem] w-[10rem] bg-[#242b52] rounded py-3 flex gap-1 flex-col transition-opacity duration-500"
-                  : "absolute w-[0] "
-              } transition-opacity duration-500`}
+                  ? "hover:bg-slate-400 h-10  flex items-center justify-center gap-4 transition-colors duration-300"
+                  : "opacity-0 text-transparent"
+              }`}
             >
-              <button
-                className={`${
-                  isComponentVisible
-                    ? "hover:bg-slate-400 h-10  flex items-center justify-center gap-4 transition-colors duration-300"
-                    : "opacity-0 text-transparent"
-                }`}
-              >
-                View Profile
-              </button>
-              <button
-                className={`${
-                  isComponentVisible
-                    ? "hover:bg-slate-400 h-10  flex items-center justify-center gap-4 transition-colors duration-300"
-                    : "opacity-0 text-transparent"
-                }`}
-              >
-                <LuSettings />
-                Settings
-              </button>
-              <button
-                className={`${
-                  isComponentVisible
-                    ? "hover:bg-slate-400 h-10  flex items-center justify-center gap-4 transition-colors duration-300"
-                    : "opacity-0 text-transparent"
-                }`}
-                onClick={logout}
-              >
-                <MdOutlineLogout />
-                Log Out
-              </button>
-            </div>
+              View Profile
+            </button>
+            <button
+              className={`${
+                isComponentVisible
+                  ? "hover:bg-slate-400 h-10  flex items-center justify-center gap-4 transition-colors duration-300"
+                  : "opacity-0 text-transparent"
+              }`}
+            >
+              <LuSettings />
+              Settings
+            </button>
+            <button
+              className={`${
+                isComponentVisible
+                  ? "hover:bg-slate-400 h-10  flex items-center justify-center gap-4 transition-colors duration-300"
+                  : "opacity-0 text-transparent"
+              }`}
+              onClick={logout}
+            >
+              <MdOutlineLogout />
+              Log Out
+            </button>
           </div>
-        </nav>
-      </div>
+        </div>
+      </nav>
     </div>
   );
 };
