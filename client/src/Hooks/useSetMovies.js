@@ -4,6 +4,7 @@ import { getMovieList } from "../Services/Movies/GetMovieListService";
 export function useSetMovies() {
   const [movieSlides, setMovieSlides] = useState([]);
   const [error, setError] = useState(null);
+  const [localLoader, setLocalLoader] = useState(true);
 
   const chunkifyMovies = (movies) => {
     let chunkSize = 3;
@@ -26,6 +27,8 @@ export function useSetMovies() {
       chunkifyMovies(response.data.results);
     } catch (error) {
       setError(error.response.data.message);
+    } finally {
+      setLocalLoader(false);
     }
   }, []);
 
@@ -33,5 +36,5 @@ export function useSetMovies() {
     setMovies();
   }, [setMovies]);
 
-  return { movieSlides, error };
+  return { movieSlides, error, localLoader };
 }

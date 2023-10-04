@@ -1,8 +1,11 @@
 import axios from "axios";
 
+const REACT_APP_GAMES_API_SECRET_KEY =
+  process.env.REACT_APP_GAMES_API_SECRET_KEY;
+
 export const getGameList = async () => {
   const response = await axios.get(
-    "https://api.rawg.io/api/games?key=3925433d47bd4726a55bac2b3102c68e&page_size=12",
+    `https://api.rawg.io/api/games?key=${REACT_APP_GAMES_API_SECRET_KEY}&page_size=12`,
     { withCredentials: false }
   );
 

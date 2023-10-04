@@ -4,6 +4,7 @@ import { getGameList } from "../Services/Games/GetGameListService";
 export function useSetGames() {
   const [gameSlides, setGameSlides] = useState([]);
   const [error, setError] = useState(null);
+  const [localLoader, setLocalLoader] = useState(true);
 
   const chunkifyGames = (movies) => {
     let chunkSize = 3;
@@ -26,6 +27,8 @@ export function useSetGames() {
       chunkifyGames(response.data.results);
     } catch (error) {
       setError(error.response.data.message);
+    } finally {
+      setLocalLoader(false);
     }
   }, []);
 
@@ -33,5 +36,5 @@ export function useSetGames() {
     setGames();
   }, [setGames]);
 
-  return { gameSlides, error };
+  return { gameSlides, error, localLoader };
 }
