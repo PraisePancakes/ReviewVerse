@@ -7,7 +7,7 @@ import { useAuth } from "./Context/AuthContext";
 import axios from "axios";
 import Loading from "./Components/Loading";
 import Navbar from "./Components/Navbar";
-import Home from "./Pages/Home";
+import Home from "./Pages/Home/Home";
 
 axios.defaults.withCredentials = true;
 function App() {
