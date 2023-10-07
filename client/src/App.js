@@ -7,8 +7,7 @@ import { useAuth } from "./Context/AuthContext";
 import axios from "axios";
 import Loading from "./Components/Loading";
 import Navbar from "./Components/Navbar";
-import Home from "./Pages/Home/Home";
-
+import { Home, GameShowCase, MovieShowCase, BookShowCase } from "./Pages/Index";
 axios.defaults.withCredentials = true;
 function App() {
   const { initialGlobalLoader, isAuth } = useAuth();
@@ -27,6 +26,42 @@ function App() {
               isAuth ? (
                 <div className="mt-20">
                   <Home />
+                </div>
+              ) : (
+                <Navigate to="/auth"></Navigate>
+              )
+            }
+          ></Route>
+          <Route
+            path="/game/:id"
+            element={
+              isAuth ? (
+                <div className="mt-20">
+                  <GameShowCase />
+                </div>
+              ) : (
+                <Navigate to="/auth"></Navigate>
+              )
+            }
+          ></Route>
+          <Route
+            path="/movie/:id"
+            element={
+              isAuth ? (
+                <div className="mt-20">
+                  <MovieShowCase />
+                </div>
+              ) : (
+                <Navigate to="/auth"></Navigate>
+              )
+            }
+          ></Route>
+          <Route
+            path="/book/:id"
+            element={
+              isAuth ? (
+                <div className="mt-20">
+                  <BookShowCase />
                 </div>
               ) : (
                 <Navigate to="/auth"></Navigate>

@@ -25,6 +25,7 @@ export function useSetMovies() {
     try {
       const response = await getMovieList();
       chunkifyMovies(response.data.results);
+      console.log(response);
     } catch (error) {
       setError(error.response.data.message);
     } finally {

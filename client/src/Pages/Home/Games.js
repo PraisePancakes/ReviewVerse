@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import { useSetGames } from "../../Hooks/useSetGames";
 import Loading from "../../Components/Loading";
+import { Link } from "react-router-dom";
 
 const Games = () => {
   const [slide, setSlide] = useState(0);
@@ -33,7 +34,8 @@ const Games = () => {
             <AiOutlineArrowLeft />
           </button>
           {gameSlides[slide]?.map((game) => (
-            <li
+            <Link
+              to={`/game/${game.id}`}
               key={game.id}
               className={`mt-5 grid gap-5 grid-flow-row grid-rows-1`}
             >
@@ -44,7 +46,7 @@ const Games = () => {
                 src={`${game.background_image}`}
               ></img>
               <h4>Average Rating {game.rating}/5</h4>
-            </li>
+            </Link>
           ))}
           <button onClick={() => nextSlide(slide)}>
             <AiOutlineArrowRight />

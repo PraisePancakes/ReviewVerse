@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import { useSetMovies } from "../../Hooks/useSetMovies";
 import Loading from "../../Components/Loading";
+import { Link } from "react-router-dom";
 
 const Movies = () => {
   const [slide, setSlide] = useState(0);
@@ -18,7 +19,7 @@ const Movies = () => {
       setSlide(movieSlides.length - 1);
     } else setSlide(slide - 1);
   };
-  console.log(movieSlides);
+
   return (
     <div>
       {" "}
@@ -34,7 +35,8 @@ const Movies = () => {
             <AiOutlineArrowLeft />
           </button>
           {movieSlides[slide]?.map((movie) => (
-            <li
+            <Link
+              to={`/movie/${movie.id}`}
               key={movie.id}
               className={`mt-5 grid gap-5 grid-flow-row grid-rows-1`}
             >
@@ -43,7 +45,7 @@ const Movies = () => {
                 src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
               ></img>
               <h4>Average Rating {movie.vote_average}/10</h4>
-            </li>
+            </Link>
           ))}
           <button onClick={() => nextSlide(slide)}>
             <AiOutlineArrowRight />
