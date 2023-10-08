@@ -9,6 +9,7 @@ import Loading from "./Components/Loading";
 import Navbar from "./Components/Navbar";
 import { Home, GameShowCase, MovieShowCase, BookShowCase } from "./Pages/Index";
 axios.defaults.withCredentials = true;
+//Possible TO-DO : move external media api's to server side rather than client side
 function App() {
   const { initialGlobalLoader, isAuth } = useAuth();
 

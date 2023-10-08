@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import axios from "axios";
 import { getBookList } from "../Services/Books/GetBookListService";
 
 export function useSetBooks() {
@@ -36,6 +35,8 @@ export function useSetBooks() {
 
   useEffect(() => {
     getBooks();
+
+    return () => getBooks();
   }, [getBooks]);
 
   return { bookSlides, error, localLoader };

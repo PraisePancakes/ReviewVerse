@@ -34,6 +34,8 @@ export function useSetGames() {
 
   useEffect(() => {
     setGames();
+
+    return () => setGames();
   }, [setGames]);
 
   return { gameSlides, error, localLoader };

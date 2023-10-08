@@ -35,6 +35,8 @@ export function useSetMovies() {
 
   useEffect(() => {
     setMovies();
+
+    return () => setMovies();
   }, [setMovies]);
 
   return { movieSlides, error, localLoader };
