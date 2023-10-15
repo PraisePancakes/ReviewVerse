@@ -1,41 +1,14 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import React from "react";
 import { BsBookmarkStarFill } from "react-icons/bs";
 import { AiOutlineLike } from "react-icons/ai";
+import { useSetMovieShowcase } from "../Hooks/useSetMovieShowcase";
+import { useAuth } from "../Context/AuthContext";
+import { BiCommentAdd } from "react-icons/bi";
 
 const MovieShowCase = () => {
-  const { id } = useParams();
-  const [movie, setMovie] = useState();
+  const { movie, error } = useSetMovieShowcase();
+  const { user } = useAuth();
 
-  const getMovieById = useCallback(async (movieId) => {
-    const REACT_APP_MOVIES_API_ACCESS_TOKEN =
-      process.env.REACT_APP_MOVIES_API_ACCESS_TOKEN;
-
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `${REACT_APP_MOVIES_API_ACCESS_TOKEN}`,
-      },
-      withCredentials: false,
-    };
-    try {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
-        options
-      );
-      setMovie(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
-  useEffect(() => {
-    getMovieById(id);
-
-    return () => getMovieById(id);
-  }, [getMovieById, id]);
   return (
     <div className="flex flex-wrap gap-5 mx-10 py-10 justify-start items-start">
       <div className="flex flex-col gap-1">
@@ -68,8 +41,20 @@ const MovieShowCase = () => {
             <h4>Save Movie</h4> <BsBookmarkStarFill />
           </button>
         </div>
-        <div>
-          <h1 className="text-4xl text-black">LEAVE A REVIEW</h1>
+        <div className="flex flex-col gap-5 mt-5 mb-10">
+          <div className="flex items-center gap-5">
+            <h1 className="text-4xl text-black">LEAVE A REVIEW</h1>
+            <h4 className="text-slate-500 text-lg font-bold"> 0 reviews</h4>
+          </div>
+
+          <div className="flex gap-2 border-b border-slate-400 items-center">
+            <h4>{user.username}</h4>
+            <input
+              placeholder="leave a review..."
+              className="focus:outline-none w-[35rem] p-2 bg-inherit border-l border-slate-400 focus:border-black focus:bg-slate-300 hover:border-black transition-colors duration-300"
+            ></input>
+            <BiCommentAdd size={20} />
+          </div>
         </div>
       </div>
     </div>
