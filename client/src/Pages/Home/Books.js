@@ -23,32 +23,44 @@ export const Books = () => {
 
   return (
     <div>
-      <h1 className="text-black ml-20">POPULAR BOOKS</h1>
+      <h1 className="ml-15">POPULAR BOOKS</h1>
+      {error && <div className="text-red-700">{error}</div>}
       {localLoader ? (
         <div className="flex justify-center">
           {" "}
           <Loading />
         </div>
       ) : (
-        <ul className={`flex gap-10 justify-center`}>
-          <button onClick={() => prevSlide(slide)}>
-            <AiOutlineArrowLeft />
-          </button>
-          {bookSlides[slide]?.map((book) => (
-            <Link
-              to={`/book/${book.isbns[0].isbn10}`}
-              key={book.isbns[0].isbn10}
-              className={`mt-5 grid gap-5 grid-flow-row grid-rows-1`}
-            >
-              <h4>{book.title}</h4>
-              <img src={book.book_image}></img>
-              <h4>GLOBAL RANKING {book.rank}</h4>
-            </Link>
-          ))}
-          <button onClick={() => nextSlide(slide)}>
-            <AiOutlineArrowRight />
-          </button>
-        </ul>
+        <div>
+          {" "}
+          <div className="flex justify-between gap-2">
+            <button onClick={() => prevSlide(slide)}>
+              <AiOutlineArrowLeft />
+            </button>
+            <ul className={`grid grid-cols-3 gap-5`}>
+              {bookSlides[slide]?.map((book) => (
+                <Link
+                  to={`/book/${book.isbns[0].isbn10}`}
+                  key={book.isbns[0].isbn10}
+                  className={`mt-5 grid gap-5 grid-flow-row grid-rows-1`}
+                >
+                  <div className="flex flex-col items-center">
+                    <img
+                      src={book.book_image}
+                      alt="Book poster"
+                      className="w-[487px] lg:h-[720px] md:h-[300px] sm:h-[250px] xs:h-[200px]"
+                    ></img>
+                    <h4 className="text-lg font-semibold">{book.title}</h4>
+                    <h4>GLOBAL RANKING {book.rank}</h4>
+                  </div>
+                </Link>
+              ))}
+            </ul>
+            <button onClick={() => nextSlide(slide)}>
+              <AiOutlineArrowRight />
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );

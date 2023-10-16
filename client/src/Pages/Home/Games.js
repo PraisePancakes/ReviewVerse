@@ -22,36 +22,45 @@ const Games = () => {
 
   return (
     <div>
-      <h1 className="text-black ml-20">POPULAR GAMES</h1>
+      <h1 className=" ml-15">POPULAR GAMES</h1>
+      {error && <div className="text-red-700">{error}</div>}
       {localLoader ? (
         <div className="flex justify-center">
           {" "}
           <Loading />
         </div>
       ) : (
-        <ul className={`flex gap-10 justify-center`}>
-          <button onClick={() => prevSlide(slide)}>
-            <AiOutlineArrowLeft />
-          </button>
-          {gameSlides[slide]?.map((game) => (
-            <Link
-              to={`/game/${game.id}`}
-              key={game.id}
-              className={`mt-5 grid gap-5 grid-flow-row grid-rows-1`}
-            >
-              <h4>{game.name}</h4>
-
-              <img
-                className="object-cover w-[300px] lg:h-[450px] md:h-[300px] sm:h-[250px] xs:h-[200px]"
-                src={`${game.background_image}`}
-              ></img>
-              <h4>Average Rating {game.rating}/5</h4>
-            </Link>
-          ))}
-          <button onClick={() => nextSlide(slide)}>
-            <AiOutlineArrowRight />
-          </button>
-        </ul>
+        <div>
+          {" "}
+          <div className="flex justify-between gap-2">
+            <button onClick={() => prevSlide(slide)}>
+              <AiOutlineArrowLeft />
+            </button>
+            <ul className="grid grid-cols-3 gap-5">
+              {gameSlides[slide]?.map((game) => (
+                <Link
+                  to={`/game/${game.id}`}
+                  key={game.id}
+                  className={`mt-5 grid gap-5 grid-flow-row grid-rows-1`}
+                >
+                  <div className="flex flex-col items-center">
+                    {" "}
+                    <img
+                      className="object-cover w-[487px] lg:h-[720px] md:h-[300px] sm:h-[250px] xs:h-[200px]"
+                      src={`${game.background_image}`}
+                      alt="Game poster"
+                    ></img>
+                    <h4 className="text-lg font-semibold">{game.name}</h4>
+                    <h4>Average Rating {game.rating}/5</h4>
+                  </div>
+                </Link>
+              ))}
+            </ul>
+            <button onClick={() => nextSlide(slide)}>
+              <AiOutlineArrowRight />
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );

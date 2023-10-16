@@ -52,7 +52,11 @@ const Navbar = () => {
           to="/"
           className="cursor-pointer flex flex-col items-center justify-center"
         >
-          <h3 className={`${scrollPosition > 0 ? "" : "text-black"}`}>
+          <h3
+            className={`${
+              scrollPosition > 0 ? "text-[#fbeaeb]" : "text-black"
+            }`}
+          >
             REVIEW VERSE
           </h3>
           <NavLogo />

@@ -19,8 +19,8 @@ export function useSetMovieShowcase() {
   useEffect(() => {
     getMovie(id);
 
-    return () => getMovieById(id);
-  }, [getMovieById, id]);
+    return () => getMovie(id);
+  }, [getMovie, id]);
 
   return { movie, error };
 }

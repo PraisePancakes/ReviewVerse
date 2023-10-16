@@ -8,49 +8,48 @@ const Movies = () => {
   const [slide, setSlide] = useState(0);
   const { movieSlides, error, localLoader } = useSetMovies();
 
-  const nextSlide = (slide) => {
-    if (slide === movieSlides.length - 1) {
-      setSlide(0);
-    } else setSlide(slide + 1);
+  const nextSlide = () => {
+    setSlide((slide + 1) % movieSlides.length);
   };
 
-  const prevSlide = (slide) => {
-    if (slide === 0) {
-      setSlide(movieSlides.length - 1);
-    } else setSlide(slide - 1);
+  const prevSlide = () => {
+    setSlide((slide - 1 + movieSlides.length) % movieSlides.length);
   };
 
   return (
     <div>
-      {" "}
-      <h1 className="text-black ml-20">POPULAR MOVIES</h1>
+      <h1 className="ml-15">POPULAR MOVIES</h1>
+      {error && <div className="text-red-700">{error}</div>}
       {localLoader ? (
         <div className="flex justify-center">
-          {" "}
           <Loading />
         </div>
       ) : (
-        <ul className={`flex gap-10 justify-center`}>
-          <button onClick={() => prevSlide(slide)}>
-            <AiOutlineArrowLeft />
-          </button>
-          {movieSlides[slide]?.map((movie) => (
-            <Link
-              to={`/movie/${movie.id}`}
-              key={movie.id}
-              className={`mt-5 grid gap-5 grid-flow-row grid-rows-1`}
-            >
-              <h4>{movie.title}</h4>
-              <img
-                src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-              ></img>
-              <h4>Average Rating {movie.vote_average}/10</h4>
-            </Link>
-          ))}
-          <button onClick={() => nextSlide(slide)}>
-            <AiOutlineArrowRight />
-          </button>
-        </ul>
+        <div>
+          <div className="flex justify-between gap-2">
+            <button onClick={prevSlide}>
+              <AiOutlineArrowLeft />
+            </button>
+            <ul className="grid grid-cols-3 gap-5">
+              {movieSlides[slide]?.map((movie) => (
+                <Link to={`/movie/${movie.id}`} key={movie.id}>
+                  <div className="flex flex-col items-center">
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                      alt="movies poster"
+                      className=" object-contain w-[487px] lg:h-[720px] md:h-[300px] sm:h-[250px] xs:h-[200px]"
+                    />
+                    <h4 className="text-lg font-semibold">{movie.title}</h4>
+                    <p>Average Rating: {movie.vote_average}/10</p>
+                  </div>
+                </Link>
+              ))}
+            </ul>
+            <button onClick={nextSlide}>
+              <AiOutlineArrowRight />
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );

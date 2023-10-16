@@ -13,12 +13,12 @@ const AuthHome = () => {
           id="jagged-bottom-border"
           className="flex flex-col items-center w-full bg-[#f7f7f7]"
         >
-          <h1 className="text-4xl p-5 text-black ">REVIEW VERSE</h1>
+          <h1 className="text-4xl p-5  ">REVIEW VERSE</h1>
           <Logo />
         </div>
 
         <main className="flex flex-col justify-center mt-5 items-center gap-10 w-full h-full">
-          <h2 className="text-7xl w-[15rem]">
+          <h2 className="text-7xl text-[#fbeaeb] w-[15rem]">
             Discover... Discuss... Decide...
           </h2>
 
@@ -35,7 +35,7 @@ const AuthHome = () => {
               year of conversation.
             </q>
             <cite>
-              <h2>―Plato</h2>
+              <h2 className="text-[#fbeaeb]">―Plato</h2>
             </cite>
           </blockquote>
         </main>
@@ -47,15 +47,15 @@ const AuthHome = () => {
 
       <section className=" md:w-1/2 w-full h-screen  flex flex-col justify-center items-center gap-5 ">
         <div className="flex flex-col items-center mb-[20px] md:hidden">
-          <h1 className="text-4xl m-5 text-black  ">REVIEW VERSE</h1>
+          <h1 className="text-4xl m-5 ">REVIEW VERSE</h1>
           <Logo />
         </div>
         <div className="flex flex-col">
-          <h2 className="text-2xl text-black" id="typing-animation">
+          <h2 className="text-2xl " id="typing-animation">
             Find Movies Games and Books That Fit You! &nbsp;
           </h2>
         </div>
-        <h1 className="text-black text-3xl ">GET STARTED</h1>
+        <h1 className=" text-3xl ">GET STARTED</h1>
         <div className="flex gap-3 items-center">
           <Link to="/auth/login">
             <button className="bg-blue-900 w-[10rem] p-2 rounded text-white">
