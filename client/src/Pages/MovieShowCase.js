@@ -2,12 +2,10 @@ import React from "react";
 import { BsBookmarkStarFill } from "react-icons/bs";
 import { AiOutlineLike } from "react-icons/ai";
 import { useSetMovieShowcase } from "../Hooks/useSetMovieShowcase";
-import { useAuth } from "../Context/AuthContext";
-import { BiCommentAdd } from "react-icons/bi";
+import Comments from "../Components/Comments";
 
 const MovieShowCase = () => {
   const { movie, error } = useSetMovieShowcase();
-  const { user } = useAuth();
 
   return (
     <div className="flex flex-wrap gap-5 mx-10 py-10 justify-start items-start">
@@ -37,26 +35,12 @@ const MovieShowCase = () => {
         <text className="text-xl">{movie?.vote_average}/10</text>
       </div>
       <div>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 ">
           <button className="flex gap-2 items-center border border-black p-2 rounded-full hover:text-white hover:bg-black transition-colors duration-500 text-black ">
             <h4>Save Movie</h4> <BsBookmarkStarFill />
           </button>
         </div>
-        <div className="flex flex-col gap-5 mt-5 mb-10">
-          <div className="flex items-center gap-5">
-            <h1>LEAVE A REVIEW</h1>
-            <h4 className="text-slate-500 text-lg font-bold"> 0 reviews</h4>
-          </div>
-
-          <div className="flex gap-2 border-b border-slate-400 items-center">
-            <h4>{user.username}</h4>
-            <input
-              placeholder="leave a review..."
-              className="focus:outline-none w-[35rem] p-2 bg-inherit border-l border-slate-400 focus:border-black focus:bg-slate-300 hover:border-black transition-colors duration-300"
-            ></input>
-            <BiCommentAdd size={20} />
-          </div>
-        </div>
+        <Comments />
       </div>
     </div>
   );

@@ -40,7 +40,7 @@ export const Books = () => {
             <ul className={`grid grid-cols-3 gap-5`}>
               {bookSlides[slide]?.map((book) => (
                 <Link
-                  to={`/book/${book.isbns[0].isbn10}`}
+                  to={`/book/${book.title}`}
                   key={book.isbns[0].isbn10}
                   className={`mt-5 grid gap-5 grid-flow-row grid-rows-1`}
                 >

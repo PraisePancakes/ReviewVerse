@@ -58,7 +58,7 @@ function App() {
             }
           ></Route>
           <Route
-            path="/book/:id"
+            path="/book/:title"
             element={
               isAuth ? (
                 <div className="mt-20">

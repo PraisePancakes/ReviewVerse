@@ -51,7 +51,9 @@ const Games = () => {
                       alt="Game poster"
                     ></img>
                     <h4 className="text-lg font-semibold">{game.name}</h4>
-                    <h4>Average Rating {game.rating}/5</h4>
+                    <h4>
+                      Average Rating {game.rating}/{game.rating_top}
+                    </h4>
                   </div>
                 </Link>
               ))}
